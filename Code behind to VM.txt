@@ -1,0 +1,144 @@
+using Group.Model;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+
+namespace Group.ViewModel
+{
+    public class PatientDataInputVM : ViewModelBase
+    {
+        private List<Patient> _dbPatients;
+        private string _firstName;
+        private string _lastName;
+        private int? _age;
+        private string _ward;
+        private string _medicalPriorities;
+
+        public List<Patient> DBPatients
+        {
+            get => _dbPatients;
+            set => SetProperty(ref _dbPatients, value);
+        }
+
+        public string FirstName
+        {
+            get => _firstName;
+            set => SetProperty(ref _firstName, value);
+        }
+
+        public string LastName
+        {
+            get => _lastName;
+            set => SetProperty(ref _lastName, value);
+        }
+
+        public int? Age
+        {
+            get => _age;
+            set => SetProperty(ref _age, value);
+        }
+
+        public string Ward
+        {
+            get => _ward;
+            set => SetProperty(ref _ward, value);
+        }
+
+        public string MedicalPriorities
+        {
+            get => _medicalPriorities;
+            set => SetProperty(ref _medicalPriorities, value);
+        }
+
+        public RelayCommand AddCommand { get; }
+        public RelayCommand DeleteCommand { get; }
+        public RelayCommand EditCommand { get; }
+
+        public PatientDataInputVM()
+        {
+            AddCommand = new RelayCommand(Add, CanAdd);
+            DeleteCommand = new RelayCommand(Delete, CanDelete);
+            EditCommand = new RelayCommand(Edit, CanEdit);
+            using (UserDataContext context = new UserDataContext())
+            {
+                DBPatients = context.Patients.ToList();
+            }
+        }
+
+        private void Add()
+        {
+            using (UserDataContext context = new UserDataContext())
+            {
+                if (Age == null)
+                {
+                    MessageBox.Show("Enter the Age of patient", "Error");
+                    return;
+                }
+
+                context.Patients.Add(new Patient()
+                {
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Age = Age.Value,
+                    Ward = Ward,
+                    MedicalPriorities = MedicalPriorities
+                });
+                context.SaveChanges();
+
+                DBPatients = context.Patients.ToList();
+            }
+        }
+
+        private bool CanAdd()
+        {
+            return !string.IsNullOrEmpty(FirstName) && Age != null;
+        }
+
+        private void Delete()
+        {
+            using (UserDataContext context = new UserDataContext())
+            {
+                Patient selectedPatient = SelectedPatient;
+                if (selectedPatient != null)
+                {
+                    context.Remove(selectedPatient);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Select a patient", "Error");
+                    return;
+                }
+
+                DBPatients = context.Patients.ToList();
+            }
+        }
+
+        private bool CanDelete()
+        {
+            return SelectedPatient != null;
+        }
+
+        private void Edit()
+        {
+            // TODO: implement Edit command
+        }
+
+        private bool CanEdit()
+        {
+            // TODO: implement CanEdit logic
+            return false;
+        }
+
+        private Patient _selectedPatient;
+        public Patient SelectedPatient
+        {
+            get => _selectedPatient;
+            set
+            {
+                SetProperty(ref _selectedPatient, value);
+                DeleteCommand.RaiseCanExecuteChanged();
+            }
+        }
+    }
+}

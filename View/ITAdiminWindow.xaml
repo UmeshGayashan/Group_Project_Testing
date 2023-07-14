@@ -1,0 +1,526 @@
+﻿<Window x:Class="Group.View.ITAdiminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:local="clr-namespace:Group.View"
+        mc:Ignorable="d"
+        Title="ITAdiminWindow" Height="700" Width="1300"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border CornerRadius="12"
+                BorderThickness="5"
+                >
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#34015D" Offset="0"/>
+                <GradientStop Color="#9A015D" Offset="0.75"/>
+                <GradientStop Color="#F5015D" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <!--Navigation menu-->
+                <ColumnDefinition Width="250"/>
+                <!--Content Section-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Navigation Menu-->
+            <Border CornerRadius="10,0,0,10"
+                    Grid.Column="0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                        <GradientStop Color="#038E34" Offset="0"/>
+                        <GradientStop Color="#5F6A34" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <StackPanel>
+                    <!--Logo-->
+                    <StackPanel Orientation="Horizontal"
+                                Height="45"
+                                Margin="15,25,0,40">
+                        <Image Source="/Images/Logo.png"
+                               Height="40"/>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="DEV TEAM"
+                                   Foreground="Orange"
+                                   FontSize="20"
+                                   FontFamily="Montserrat"
+                                   FontWeight="Medium"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,0,0"/>
+                            <TextBlock Text="Patient Registraion System"
+                                   Foreground="White"
+                                   FontSize="15"
+                                   FontFamily="Montserrat"
+                                   FontWeight="Medium"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <!--Menu Buttons-->
+                    <RadioButton x:Name="ITDashboard" Tag="#280000" Click="ITDashboard_Click">
+                        <RadioButton.Style>
+                            <Style TargetType="RadioButton">
+                                <!--Normal Button Style-->
+                                <Setter Property="Height" Value="80"/>
+                                <Setter Property="Margin" Value="-5,0,0,5"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="#280000"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="RadioButton">
+                                            <Border Background="{TemplateBinding Background}"
+                                BorderThickness="4,0,0,0"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <!--Mouse over back color-->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Margin" Value="0,0,0,5"/>
+                                        <Setter Property="Background" Value="#0E4934"/>
+                                        <Setter Property="Foreground" Value="#518B1A"/>
+                                        <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                    </Trigger>
+
+                                    <!--Active button back color-->
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Margin" Value="0,0,0,5"/>
+                                        <Setter Property="Background" Value="#228E00"/>
+                                        <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                        <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </RadioButton.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Home">
+                                <fa:IconImage.Style>
+                                    <Style TargetType="fa:IconImage">
+                                        <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+                                        <Setter Property="Width" Value="22"/>
+                                        <Setter Property="Height" Value="22"/>
+                                        <Setter Property="Margin" Value="35,0,20,0"/>
+                                    </Style>
+                                </fa:IconImage.Style>
+                            </fa:IconImage>
+                            <TextBlock Text="Dashboard">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+                                        <Setter Property="FontFamily" Value="Montserrat"/>
+                                        <Setter Property="FontWeight" Value="Medium"/>
+                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton  x:Name="DoctorsData" Tag="#280000" Click="DoctorsData_Click">
+                        <RadioButton.Style>
+                            <Style TargetType="RadioButton">
+                                <!--Normal Button Style-->
+                                <Setter Property="Height" Value="80"/>
+                                <Setter Property="Margin" Value="-5,0,0,5"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="#280000"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="RadioButton">
+                                            <Border Background="{TemplateBinding Background}"
+                                BorderThickness="4,0,0,0"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <!--Mouse over back color-->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Margin" Value="0,0,0,5"/>
+                                        <Setter Property="Background" Value="#0E4934"/>
+                                        <Setter Property="Foreground" Value="#518B1A"/>
+                                        <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                    </Trigger>
+
+                                    <!--Active button back color-->
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Margin" Value="0,0,0,5"/>
+                                        <Setter Property="Background" Value="#228E00"/>
+                                        <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                        <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </RadioButton.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="UserGroup">
+                                <fa:IconImage.Style>
+                                    <Style TargetType="fa:IconImage">
+                                        <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+                                        <Setter Property="Width" Value="22"/>
+                                        <Setter Property="Height" Value="22"/>
+                                        <Setter Property="Margin" Value="35,0,20,0"/>
+                                    </Style>
+                                </fa:IconImage.Style>
+                            </fa:IconImage>
+                            <TextBlock Text="Doctor's Data Input">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+                                        <Setter Property="FontFamily" Value="Montserrat"/>
+                                        <Setter Property="FontWeight" Value="Medium"/>
+                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton  Tag="#280000" >
+                        <RadioButton.Style>
+                            <Style TargetType="RadioButton">
+                                <!--Normal Button Style-->
+                                <Setter Property="Height" Value="80"/>
+                                <Setter Property="Margin" Value="-5,0,0,5"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="#280000"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="RadioButton">
+                                            <Border Background="{TemplateBinding Background}"
+                                BorderThickness="4,0,0,0"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <!--Mouse over back color-->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Margin" Value="0,0,0,5"/>
+                                        <Setter Property="Background" Value="#0E4934"/>
+                                        <Setter Property="Foreground" Value="#518B1A"/>
+                                        <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                    </Trigger>
+
+                                    <!--Active button back color-->
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Margin" Value="0,0,0,5"/>
+                                        <Setter Property="Background" Value="#228E00"/>
+                                        <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                        <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </RadioButton.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="UserDoctor">
+                                <fa:IconImage.Style>
+                                    <Style TargetType="fa:IconImage">
+                                        <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+                                        <Setter Property="Width" Value="22"/>
+                                        <Setter Property="Height" Value="22"/>
+                                        <Setter Property="Margin" Value="35,0,20,0"/>
+                                    </Style>
+                                </fa:IconImage.Style>
+                            </fa:IconImage>
+                            <TextBlock Text="Add Doctor">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+                                        <Setter Property="FontFamily" Value="Montserrat"/>
+                                        <Setter Property="FontWeight" Value="Medium"/>
+                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton  Tag="#280000" >
+                        <RadioButton.Style>
+                            <Style TargetType="RadioButton">
+                                <!--Normal Button Style-->
+                                <Setter Property="Height" Value="80"/>
+                                <Setter Property="Margin" Value="-5,0,0,5"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="#280000"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="RadioButton">
+                                            <Border Background="{TemplateBinding Background}"
+                                BorderThickness="4,0,0,0"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <!--Mouse over back color-->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Margin" Value="0,0,0,5"/>
+                                        <Setter Property="Background" Value="#0E4934"/>
+                                        <Setter Property="Foreground" Value="#518B1A"/>
+                                        <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                    </Trigger>
+
+                                    <!--Active button back color-->
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Margin" Value="0,0,0,5"/>
+                                        <Setter Property="Background" Value="#228E00"/>
+                                        <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                        <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </RadioButton.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Receipt">
+                                <fa:IconImage.Style>
+                                    <Style TargetType="fa:IconImage">
+                                        <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+                                        <Setter Property="Width" Value="22"/>
+                                        <Setter Property="Height" Value="22"/>
+                                        <Setter Property="Margin" Value="35,0,20,0"/>
+                                    </Style>
+                                </fa:IconImage.Style>
+                            </fa:IconImage>
+                            <TextBlock Text="Patient's History">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+                                        <Setter Property="FontFamily" Value="Montserrat"/>
+                                        <Setter Property="FontWeight" Value="Medium"/>
+                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton  Tag="#280000" >
+                        <RadioButton.Style>
+                            <Style TargetType="RadioButton">
+                                <!--Normal Button Style-->
+                                <Setter Property="Height" Value="80"/>
+                                <Setter Property="Margin" Value="-5,0,0,5"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="#280000"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="RadioButton">
+                                            <Border Background="{TemplateBinding Background}"
+                                BorderThickness="4,0,0,0"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <!--Mouse over back color-->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Margin" Value="0,0,0,5"/>
+                                        <Setter Property="Background" Value="#0E4934"/>
+                                        <Setter Property="Foreground" Value="#518B1A"/>
+                                        <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                    </Trigger>
+
+                                    <!--Active button back color-->
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Margin" Value="0,0,0,5"/>
+                                        <Setter Property="Background" Value="#228E00"/>
+                                        <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                        <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </RadioButton.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Pills">
+                                <fa:IconImage.Style>
+                                    <Style TargetType="fa:IconImage">
+                                        <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+                                        <Setter Property="Width" Value="22"/>
+                                        <Setter Property="Height" Value="22"/>
+                                        <Setter Property="Margin" Value="35,0,20,0"/>
+                                    </Style>
+                                </fa:IconImage.Style>
+                            </fa:IconImage>
+                            <TextBlock Text="Medical Records">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+                                        <Setter Property="FontFamily" Value="Montserrat"/>
+                                        <Setter Property="FontWeight" Value="Medium"/>
+                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </RadioButton>
+
+
+
+
+                </StackPanel>
+
+
+            </Border>
+            <!--Main Section-->
+            <Border CornerRadius="0,10,10,0"
+                    Grid.Column="1">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                        <GradientStop Color="#5FC534" Offset="0"/>
+                        <GradientStop Color="#258E34" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel x:Name="ctrlpnlBar"
+                                Grid.Row="0" Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                Margin="0,0,10,0">
+
+                        <Button x:Name="btnClose"                            
+                            BorderThickness="0"
+                            Content="X"
+                            Foreground="White"
+                            FontSize="16"
+                            FontFamily="Montserrart"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnClose_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#C40020"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#C40020"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button x:Name="btnMinimize"                            
+                            BorderThickness="0"
+                            Content="-"
+                            Width="30"
+                            Foreground="White"
+                            FontSize="16"
+                            FontFamily="Montserrart"
+                            Cursor="Hand"
+                            Grid.Column="1"
+                            Click="btnMinimize_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#C48120"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#C48120"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="btnLogOut"                            
+                            BorderThickness="0"
+                            Content="Log Out"
+                            Foreground="White"
+                            FontSize="2"
+                            FontFamily="Montserrart"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnLogOut_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#C40020"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#C40020"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="100" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        </Button>
+                    </StackPanel>
+
+                    <!--<ContentControl Content=""
+                                    Grid.Row="1"
+                                    Margin="25"/>-->
+                    <Frame x:Name="ITframe" Grid.Row="1"/>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>
